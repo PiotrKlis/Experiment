@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Experiment</string>
+    <string name="main_activity_action_bar_title">Main Activity</string>
+    <string name="activity_for_result_action_bar_title">Activity For Result</string>
+    <string name="button_activity_for_result">Activity For Result</string>
+    <string name="main_changable_textview">I like to change</string>
 </resources>

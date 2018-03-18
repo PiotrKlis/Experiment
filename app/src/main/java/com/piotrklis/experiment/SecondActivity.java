@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.piotrklis.experiment.util.IntentUtil;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -44,7 +46,7 @@ public class SecondActivity extends AppCompatActivity {
     @NonNull
     private Intent prepareIntent(String content) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("content", content);
+        intent.putExtra(IntentUtil.CONTENT, content);
         return intent;
     }
 }

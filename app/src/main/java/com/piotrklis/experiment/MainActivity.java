@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.piotrklis.experiment.util.IntentUtil;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     @BindView(R.id.changableTextView)
     TextView changeableTextView;
-    @BindView(R.id.saveInstanceTextView)
-    TextView saveInstanceTextView;
     String saveInstanceContent;
 
     @Override
@@ -34,15 +34,10 @@ public class MainActivity extends AppCompatActivity {
             saveInstanceContent = savedInstanceState.getString(SAVED_INSTANCE_CONSTANT);
             setChangableTextView(saveInstanceContent);
         } else {
-            saveInstanceContent = "content";
+            saveInstanceContent = getString(R.string.main_changable_textview);
             setChangableTextView(saveInstanceContent);
         }
     }
-
-    private void setChangableTextView(String content) {
-        changeableTextView.setText(content);
-    }
-
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -53,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                String result = data.getStringExtra("content");
-                changeableTextView.setText(result);
+                String result = data.getStringExtra(IntentUtil.CONTENT);
                 saveInstanceContent = result;
+                setChangableTextView(result);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
             }
@@ -69,5 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(new Intent(this, SecondActivity.class), REQUEST_CODE);
                 break;
         }
+    }
+    
+    private void setChangableTextView(String content) {
+        changeableTextView.setText(content);
     }
 }
