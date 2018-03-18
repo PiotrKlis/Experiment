@@ -19,9 +19,12 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1;
     private static final String SAVED_INSTANCE_CONSTANT = "SavedInstanceConstant";
     @BindView(R.id.buttonMain)
-    Button button;
+    Button buttonActivityForResult;
     @BindView(R.id.changableTextView)
     TextView changeableTextView;
+    @BindView(R.id.buttonRx)
+    Button buttonRx;
+
     String saveInstanceContent;
 
     @Override
@@ -57,15 +60,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.buttonMain})
+    @OnClick({R.id.buttonMain, R.id.buttonRx})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.buttonMain:
                 startActivityForResult(new Intent(this, SecondActivity.class), REQUEST_CODE);
                 break;
+            case R.id.buttonRx:
+                startActivity(new Intent(this, RxActivity.class));
         }
     }
-    
+
     private void setChangableTextView(String content) {
         changeableTextView.setText(content);
     }
